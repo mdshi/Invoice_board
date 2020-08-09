@@ -1,0 +1,29 @@
+.invoice-list-page-header {
+  margin-left: -30px !important;
+}
+
+.invoice-list-page-header .pagination {
+  margin: 0px 0px 0px 0px !important;
+}
+
+.invoice-list-page-header {
+  padding-bottom: 20px;
+}
+
+.invoice-list {
+  max-height: 75vh;
+  overflow: auto;
+}
+
+.server-status-label {
+    margin: 2px;
+    display: block;
+}
+
+.invoice-list-item .control-buttons {
+  vertical-align: middle;
+}
+
+.invoice-accomplished-by {
+  display: block;
+}

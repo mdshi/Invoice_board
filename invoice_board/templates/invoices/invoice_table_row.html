@@ -1,0 +1,32 @@
+<tr class="invoice-list-item" id="invoice-id-{{ invoice.id }}" data-id="{{ invoice.id }}" data-name="{{ invoice.name }}"
+      data-created_by="{{ invoice.created_by }}" data-created_by_username="{{ invoice.created_by_username }}"
+      data-description="{{ invoice.description }}" data-processed_by="{{ invoice.processed_by }}" data-processed_by_username="{{ invoice.processed_by_username }}"
+      data-status="{{ invoice.status }}" data-status_readable="{{ invoice.status_readable }}">
+  <td class="col-md-6">
+    <a class="invoice-link-dialog-toggler invoice-name" role="button" href="#invoice-information" data-toggle="modal"
+              data-target="#invoice-modal-form">
+      {{ invoice.name }}
+    </a>
+  </td>
+  <td class="col-md-2 text-center invoice-created-by-username">
+    {{ invoice.created_by_username }}
+  </td>
+  <td class="col-md-2 text-center">
+    <span class="invoice-status">{{ invoice.status_readable }}</span>
+    <span class="invoice-accomplished-by">
+    </span>
+  </td>
+  <td class="col-md-2 text-center">
+    <div class="control-buttons">
+      <button id="edit-button" class="submit btn btn-default" style="display: none;" title="Edit" role="button" data-toggle="modal" data-target="#invoice-modal-form" disabled>
+        <i class="fa fa-pencil" aria-hidden="true"></i>
+      </button>
+      <button id="delete-button" class="submit btn btn-default" style="display: none;" title="Delete" role="button" data-toggle="modal" data-target="#invoice-modal-form" disabled>
+        <i class="fa fa-trash" aria-hidden="true"></i>
+      </button>
+      <button id="markdone-button" class="submit btn btn-default" title="Mark as Done" role="button" data-toggle="modal" data-target="#invoice-modal-form" disabled>
+        <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+      </button> 
+    </div>
+  </td>
+</tr>

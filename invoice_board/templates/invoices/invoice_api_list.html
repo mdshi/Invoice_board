@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load bootstrap_pagination %}
+
+{% block css %}
+{{ block.super }}
+<link href="{% static 'css/invoice-list.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<span id="current-user-id" data-id="{{ user.pk }}"></span>
+
+<div class="row invoice-list-page-header">
+  <div class="col-md-1">
+      <button id="add-button" class="btn btn-default" title="Add invoice" role="button" data-toggle="modal" data-target="#invoice-modal-form">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+      </button>
+  </div>
+  <div class="col-md-7">
+    {% if paginator %}
+    {% bootstrap_paginate paginator.page range=10 %}
+    {% endif %}
+  </div>
+  <div class="col-md-3">
+    {% if invoicesdone_checkbox.is_shown %}
+    <div class="checkbox" style="">
+      <a href="{{ invoicesdone_checkbox.url }}">
+        <label><input type="checkbox" value="" {{ invoicesdone_checkbox_is_checked }}
+                      onclick='window.location.assign("{{ invoicesdone_checkbox.url }}")'>Don't show 'Done' invoices</label>
+      </a>
+    </div>
+    {% endif %}
+  </div>
+  <div class="col-md-1">
+    {% if filter_form %}
+    <button style="float: right; " data-toggle="modal" data-target="#filtersModal"
+            class="btn btn-default"> <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+      Search
+    </button>
+    {% endif %}
+  </div>
+
+</div>
+
+<div class="row">
+  <div class="col-md-12 invoice-list">
+      <table class="table table-bordered">
+        <tbody>
+        <tr id="invoice-table-header" class="active">
+          <th class="text-center">Name</th>
+          <th class="text-center">Owner</th>
+          <th class="text-center">Status</th>
+          <th class="text-center">Actions</th>
+        </tr>
+        {% for invoice in results %}
+          {% include 'invoices/invoice_table_row.html' %}
+        {% endfor %}
+        </tbody>
+      </table>
+  </div>
+</div>
+
+{% if filter_form %}
+{{ filter_form }}
+{% endif %}
+
+{% include 'invoices/invoice-modal-form.html' %}
+
+<script type="text/html" id="invoice-table-row-template">
+  {% include 'invoices/invoice_table_row.html' %}
+</script>
+
+{% endblock content %}
+
+{% block javascript %}
+{{ block.super }}
+<script src="{% static 'js/underscore-min.js' %}"></script>
+<script src="{% static 'js/utils.js' %}"></script>
+<script src="{% static 'js/invoice-forms.js' %}"></script>
+<script src="{% static 'js/invoice-modal-controller.js' %}"></script>
+{% endblock %}
