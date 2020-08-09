@@ -122,8 +122,8 @@ var InvoiceView = {
     }
   },
   invoiceStatusClasses: {
-    'DONE': 'label label-success',
-    'NOT DONE': 'label label-primary',
+    'PAID': 'label label-success',
+    'NOT PAID': 'label label-primary',
   },
   allowedButtonsForOwner: ['edit', 'delete', 'markAsDone'],
   allowedButtonsForEverybody: ['markAsDone'],
@@ -219,7 +219,7 @@ var InvoiceView = {
       }
     });
     if (invoice['status'] == 1) {
-      // disable the 'markAsDone' button if invoice is 'Done'
+      // disable the 'markAsDone' button if invoice is 'Paid'
       var buttonSelector = buttonToSelectorsMapping['markAsDone'];
       $invoiceRow.find(buttonSelector).prop('disabled', true);
     }
