@@ -66,6 +66,7 @@ LOCAL_APPS = [
     # custom users app
     'invoice_board.users.apps.UsersConfig',
     'invoice_board.invoices',
+    'invoice_board.client',
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps

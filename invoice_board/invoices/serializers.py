@@ -4,6 +4,7 @@ from invoice_board.invoices.models import Invoice, InvoiceStatuses
 
 
 class InvoiceSerializer(serializers.ModelSerializer):
+    # These variables are read only
     created_by_username = serializers.StringRelatedField(source='created_by')
     processed_by_username = serializers.StringRelatedField(source='processed_by')
     status_readable = serializers.ReadOnlyField(source='get_status_display')
@@ -17,7 +18,7 @@ class InvoiceSerializer(serializers.ModelSerializer):
 
     def __init__(self, *args, **kwargs):
 
-        # specify the user who processed the Invoice if the status 'done' is set
+        # specify the user who processed the Invoice if the status 'Paid' is set
         if 'data' in kwargs and 'context' in kwargs and 'request' in kwargs['context']:
             request = kwargs['context']['request']
             data = kwargs['data']
